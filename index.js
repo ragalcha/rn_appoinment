@@ -1,5 +1,5 @@
 import dotenv from "dotenv";
-import app from "./app.js";
+import app from "./src/app.js";
 
 app.listen(process.env.PORT|| 5352, ()=>{
     console.log(`server is running on port ${process.env.PORT}`);

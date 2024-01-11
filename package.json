@@ -4,10 +4,13 @@
   "description": "creating appointment app ",
   "main": "index.js",
   "type": "module",
+  "engines": {
+    "node": ">=16.0.0"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon -r dotenv/config --experimental-json-modules src/index.js",
-    "dev": "nodemon -r dotenv/config --experimental-json-modules src/index.js"
+    "start": "nodemon -r dotenv/config --experimental-json-modules index.js",
+    "dev": "nodemon -r dotenv/config --experimental-json-modules index.js"
   },
   "repository": {
     "type": "git",
