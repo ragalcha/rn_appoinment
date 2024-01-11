@@ -6,5 +6,5 @@ app.listen(process.env.PORT|| 5352, ()=>{
 })
 
 app.get("/", (req, res)=>{
-    res.send("Hello World!");
+    res.send("oyyy jaggu beta smiles");
 })
