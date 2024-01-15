@@ -46,7 +46,7 @@ const userRegister = asyncHandler( async (req, res) => {
 const loginUser = asyncHandler( async (req, res) => {
     const { userName, email, password } = req.body;
     if(!userName && !email){
-        console.log("hello i am rmaiya");
+        // console.log("hello i am rmaiya");
         return res.status(401).json(
             new ApiError(401, "userName or email any one required")
         )
@@ -57,14 +57,14 @@ const loginUser = asyncHandler( async (req, res) => {
             new ApiError(402, "Password is required")
         )
     }
-   console.log("body from-data ",userName, email, password);
+//    console.log("body from-data ",userName, email, password);
     const user = await User.findOne({
         $or: [
             {userName},
             {email}
         ]
     })
-    console.log("userpassword",user)
+    // console.log("userpassword",user)
     if(await user.isPasswordMatch(password)){
         return res.status(201).json(
             new ApiRes(201, "Login successfully", user)
