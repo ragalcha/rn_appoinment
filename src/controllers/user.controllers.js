@@ -9,7 +9,7 @@ const userRegister = asyncHandler( async (req, res) => {
  const { fullName, userName, email, password } = req.body;
 
  if(!fullName || !userName || !email || !password){
-    throw new ApiError(400, "All fields are required")
+    throw new ApiError(401, "All fields are required")
  }
 
  const userExists = await User.findOne({
@@ -29,8 +29,7 @@ const userRegister = asyncHandler( async (req, res) => {
     email,
     password: await bcrypt.hash(password, 10)
  })
- console.log("user created ",userCreated);
- console.log("body from-data ",req.body);
+
     return res.status(201).json(
         new ApiRes(201, "user created successfully", 
         {
@@ -43,7 +42,12 @@ const userRegister = asyncHandler( async (req, res) => {
 const loginUser = asyncHandler( async (req, res) => {
     const { userName, email, password } = req.body;
     if(!userName && !email){
-        throw new ApiError(400, "userName or email any one required")
+        console.log("hello i am rmaiya");
+        throw new ApiError(401, "userName or email any one required")
+    }
+
+    if(!password){
+        throw new ApiError(402, "password required")
     }
    console.log("body from-data ",userName, email, password);
     const user = await User.findOne({
@@ -52,8 +56,8 @@ const loginUser = asyncHandler( async (req, res) => {
             {email}
         ]
     })
-  console.log("userpassword",user)
-    if(user.isPasswordMatch(password)){
+    console.log("userpassword",user)
+    if(await user.isPasswordMatch(password)){
         return res.status(201).json(
             new ApiRes(201, "Login successfully", user)
         )
